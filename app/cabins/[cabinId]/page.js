@@ -1,3 +1,4 @@
+// import { unstable_noStore as noStore } from "next/cache";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
@@ -11,6 +12,8 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
+  // noStore();
+
   const cabins = await getCabins();
 
   const IDs = cabins.map((cabin) => ({ cabinId: String(cabin.id) }));

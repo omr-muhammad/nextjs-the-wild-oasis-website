@@ -3,6 +3,10 @@ import { Suspense } from "react";
 import CabinsList from "@/app/_components/CabinsList";
 import Spinner from "@/app/_components/Spinner";
 
+// Must not be computed
+// Number is in seconds
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Cabins",
 };
