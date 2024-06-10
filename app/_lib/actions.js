@@ -39,3 +39,21 @@ export async function updateGuestProfile(formData) {
   // REVALIDATING THE DATA AFTER UPDATING
   revalidatePath("/account/profile");
 }
+
+export async function deleteReservation(bookingId, guestId) {
+  const session = await auth();
+
+  if (!session) throw new Error("You must be logged in");
+
+  if (guestId !== session.user.guestId)
+    throw new Error("You can only delete your own reservations");
+
+  const { error } = await supabase
+    .from("bookings")
+    .delete()
+    .eq("id", bookingId);
+
+  if (error) throw new Error("Booking could not be deleted");
+
+  revalidatePath("/account/reservations");
+}
