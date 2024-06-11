@@ -20,7 +20,7 @@ export default async function Reservation({ cabin }) {
         cabin={cabin}
       />
       {session?.user ? (
-        <ReservationForm maxCapacity={cabin.maxCapacity} user={session.user} />
+        <ReservationForm cabin={cabin} user={session.user} />
       ) : (
         <LoginMessage />
       )}
