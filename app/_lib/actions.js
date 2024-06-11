@@ -47,7 +47,7 @@ export async function updateGuestProfile(formData) {
 export async function deleteReservation(bookingId, guestId) {
   const session = await checkExistingUser();
 
-  if (guestId !== session.user.guestId)
+  if (Number(guestId) !== Number(session.user.guestId))
     throw new Error("You can only delete your own reservations");
 
   const { error } = await supabase
